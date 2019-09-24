@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/IndexClass/.vs/IndexClass/v16
+/IndexClass/IndexClass/bin/Debug/netcoreapp2.1
+/IndexClass/IndexClass/obj
