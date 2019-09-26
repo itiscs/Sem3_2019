@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IndexClass
 {
-    class Student
+    public class Student
     {
         public int idStudent { get; set; }
         public int GroupId { get; set; }
@@ -14,61 +14,55 @@ namespace IndexClass
 
         public override string ToString()
         {
-            return $"{idStudent} {Name} AvgMarks - {Marks.Average()} "; ///   ИСПРАВИТЬ!!!
+            return $"{idStudent} {Name} {Marks.Average()}";  //Исправить
         }
 
     }
 
-    class Group
+
+    public class Group
     {
-        public int idGroup {get; set; }
-        public string NomGroup { get; set; }
-
+        public int idGroup { get; set; }
+        public string GroupNum { get; set; }
         public List<Student> Students { get; set; } = new List<Student>();
-
 
         public Student this[int id]
         {
             get
             {
-                return Students.FirstOrDefault(s => id == s.idStudent);
+                return Students.FirstOrDefault(s => s.idStudent == id);
             }
             set
             {
-                var st = Students.FirstOrDefault(s => id == s.idStudent);
+                var st = Students.FirstOrDefault(s => s.idStudent == id);
                 if (st != null)
                     st = value;
-                else
+                else 
                     Students.Add(value);
             }
-
         }
-
-        //public Student this[string name]              TODO!!!
+        //public Student this[string name]    
         //{
         //    get
         //    {
-        //        return Students.FirstOrDefault(s => id == s.idStudent);
+        //        return Students.FirstOrDefault(s => s.idStudent == id);
         //    }
         //    set
         //    {
-        //        var st = Students.FirstOrDefault(s => id == s.idStudent);
+        //        var st = Students.FirstOrDefault(s => s.idStudent == id);
         //        if (st != null)
         //            st = value;
         //        else
         //            Students.Add(value);
         //    }
-
         //}
-
-
-
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Group - {NomGroup}");
+            sb.AppendLine($"Group - {GroupNum}");
             Students.ForEach(s => sb.AppendLine(s.ToString()));
+
             return sb.ToString();
         }
 
@@ -78,20 +72,24 @@ namespace IndexClass
 
 
 
-
     class Program
     {
         static void Main(string[] args)
         {
-            Group gr = new Group() { idGroup = 1, NomGroup = "11-811" };
-            gr[1] = new Student() { GroupId = 1, idStudent = 1, Name = "Ivanov" };
-            gr[2] = new Student() { GroupId = 1, idStudent = 2, Name = "Petrov" };
+            Group gr = new Group() { idGroup = 1, GroupNum = "11-809" };
 
+            gr[0] = new Student() { GroupId = 1, idStudent = 0, Name = "Ivanov" };
+            gr[1] = new Student() { GroupId = 1, idStudent = 1, Name = "Petrov" };
+            gr[2] = new Student() { GroupId = 1, idStudent = 2, Name = "Sidorov" };
 
-            gr[1].Marks.Add(5);
-            gr[1].Marks.Add(4);
-            gr[1].Marks.Add(4);
-            gr[2].Marks.Add(2);
+            gr[0].Marks.Add(4);
+            gr[0].Marks.Add(5);
+            gr[1].Marks.Add(3);
+            gr[1].Marks.Add(3);
+            gr[2].Marks.Add(5);
+            gr[2].Marks.Add(5);
+            gr[3].Marks.Add(3);
+
 
 
             Console.WriteLine(gr);
