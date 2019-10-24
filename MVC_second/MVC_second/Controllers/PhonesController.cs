@@ -53,7 +53,7 @@ namespace MVC_second.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Company,Price")] Phone phone)
+        public async Task<IActionResult> Create([Bind("Id,Category,Name,Company,Price")] Phone phone)
         {
             if (ModelState.IsValid)
             {
